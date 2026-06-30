@@ -1,0 +1,50 @@
+<section class="section" id="skills">
+  <div class="container">
+    <header class="skills__head">
+      <span class="section__eyebrow">{{ i18n.t().skills.eyebrow }}</span>
+      <h2 class="section__title">{{ i18n.t().skills.title }}</h2>
+      <p class="section__lead">{{ i18n.t().skills.lead }}</p>
+    </header>
+
+    <div class="skills__grid" appReveal>
+      @for (group of i18n.t().skills.groups; track group.title) {
+        <ds-card>
+          <div ds-card-body>
+            <h3 class="skills__group-title">{{ group.title }}</h3>
+            <div class="skills__chips">
+              @for (item of group.items; track item) {
+                <ds-badge [label]="item" tone="neutral"></ds-badge>
+              }
+            </div>
+          </div>
+        </ds-card>
+      }
+    </div>
+
+    <div class="skills__extra">
+      <div class="skills__panel" appReveal>
+        <h3 class="skills__panel-title">{{ i18n.t().skills.languagesTitle }}</h3>
+        <ul class="skills__langs">
+          @for (lang of i18n.t().skills.languages; track lang.name) {
+            <li class="skills__lang">
+              <span class="skills__lang-name">{{ lang.name }}</span>
+              <span class="skills__lang-level">{{ lang.level }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="skills__panel" appReveal>
+        <h3 class="skills__panel-title">{{ i18n.t().skills.educationTitle }}</h3>
+        <ul class="skills__edu">
+          @for (edu of i18n.t().skills.education; track edu.title) {
+            <li class="skills__edu-item">
+              <span class="skills__edu-title">{{ edu.title }}</span>
+              <span class="skills__edu-detail">{{ edu.detail }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

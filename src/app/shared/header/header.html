@@ -1,0 +1,71 @@
+<header class="header" [class.header--scrolled]="scrolled()">
+  <div class="container header__inner">
+    <a class="brand" href="#top" (click)="closeMenu()" aria-label="Edson Hirano">
+      <span class="brand__mark">EH</span>
+      <span class="brand__name">Edson Hirano</span>
+    </a>
+
+    <nav class="nav" [class.nav--open]="menuOpen()" aria-label="Primary">
+      <ul class="nav__list">
+        @for (link of links; track link.id) {
+          <li>
+            <a class="nav__link" [href]="'#' + link.id" (click)="closeMenu()">
+              {{ i18n.t().nav[link.key] }}
+            </a>
+          </li>
+        }
+      </ul>
+
+      <div class="nav__actions">
+        <ds-button variant="solid" color="primary" (buttonClick)="downloadCv()">
+          {{ i18n.t().actions.downloadCv }}
+        </ds-button>
+      </div>
+    </nav>
+
+    <div class="header__tools">
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleLang()"
+        [attr.aria-label]="i18n.t().actions.toggleLang"
+        [title]="i18n.t().actions.toggleLang"
+      >
+        <span class="icon-btn__text">{{ i18n.locale() === 'pt' ? 'EN' : 'PT' }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="icon-btn"
+        (click)="toggleTheme()"
+        [attr.aria-label]="i18n.t().actions.toggleTheme"
+        [title]="i18n.t().actions.toggleTheme"
+      >
+        @if (themeSvc.theme() === 'dark') {
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+        } @else {
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        }
+      </button>
+
+      <button
+        type="button"
+        class="icon-btn icon-btn--menu"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Menu"
+      >
+        @if (menuOpen()) {
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        } @else {
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
+        }
+      </button>
+    </div>
+  </div>
+</header>

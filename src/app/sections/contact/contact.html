@@ -1,0 +1,44 @@
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact" appReveal>
+      <div class="contact__intro">
+        <span class="section__eyebrow">{{ i18n.t().contact.eyebrow }}</span>
+        <h2 class="section__title">{{ i18n.t().contact.title }}</h2>
+        <p class="section__lead">{{ i18n.t().contact.lead }}</p>
+
+        <div class="contact__cta">
+          <ds-button variant="solid" color="primary" (buttonClick)="mailto()">
+            {{ i18n.t().actions.sendEmail }}
+          </ds-button>
+        </div>
+      </div>
+
+      <ul class="contact__list">
+        <li class="contact__item">
+          <span class="contact__label">{{ i18n.t().contact.emailLabel }}</span>
+          <a class="contact__value" [href]="'mailto:' + contact.email">{{ contact.email }}</a>
+        </li>
+        <li class="contact__item">
+          <span class="contact__label">{{ i18n.t().contact.phoneLabel }}</span>
+          <a class="contact__value" [href]="'tel:' + contact.phoneHref">{{ contact.phone }}</a>
+        </li>
+        <li class="contact__item">
+          <span class="contact__label">LinkedIn</span>
+          <a class="contact__value" [href]="contact.linkedin" target="_blank" rel="noopener noreferrer">
+            in/edson-hirano
+          </a>
+        </li>
+        <li class="contact__item">
+          <span class="contact__label">GitHub</span>
+          <a class="contact__value" [href]="contact.github" target="_blank" rel="noopener noreferrer">
+            github.com/hirano28
+          </a>
+        </li>
+        <li class="contact__item">
+          <span class="contact__label">{{ i18n.t().contact.locationLabel }}</span>
+          <span class="contact__value">{{ i18n.t().contact.locationValue }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

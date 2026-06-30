@@ -1,0 +1,39 @@
+<section class="section section--alt" id="projects">
+  <div class="container">
+    <header class="projects__head">
+      <span class="section__eyebrow">{{ i18n.t().projects.eyebrow }}</span>
+      <h2 class="section__title">{{ i18n.t().projects.title }}</h2>
+      <p class="section__lead">{{ i18n.t().projects.lead }}</p>
+    </header>
+
+    <div class="projects__grid" appReveal>
+      @for (project of i18n.t().projects.items; track project.name) {
+        <ds-card>
+          <div ds-card-header>
+            <div class="projects__title-row">
+              <h3 class="projects__name">{{ project.name }}</h3>
+              @if (project.badge) {
+                <ds-badge [label]="project.badge" tone="success"></ds-badge>
+              }
+            </div>
+          </div>
+          <div ds-card-body>
+            <p class="projects__desc">{{ project.description }}</p>
+            <div class="projects__tags">
+              @for (tag of project.tags; track tag) {
+                <ds-badge [label]="tag" tone="primary"></ds-badge>
+              }
+            </div>
+          </div>
+          @if (project.link) {
+            <div ds-card-footer>
+              <ds-button variant="outline" color="primary" (buttonClick)="open(project)">
+                {{ project.linkLabel ?? i18n.t().actions.viewGithub }}
+              </ds-button>
+            </div>
+          }
+        </ds-card>
+      }
+    </div>
+  </div>
+</section>

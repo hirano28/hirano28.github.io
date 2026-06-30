@@ -1,0 +1,28 @@
+<section class="section" id="about">
+  <div class="container about" appReveal>
+    <div class="about__text">
+      <span class="section__eyebrow">{{ i18n.t().about.eyebrow }}</span>
+      <h2 class="section__title">{{ i18n.t().about.title }}</h2>
+      @for (paragraph of i18n.t().about.paragraphs; track $index) {
+        <p class="about__paragraph">{{ paragraph }}</p>
+      }
+    </div>
+
+    <div class="about__aside">
+      <ds-card>
+        <div ds-card-body>
+          <ul class="about__highlights">
+            @for (item of i18n.t().about.highlights; track item) {
+              <li class="about__highlight">
+                <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+                <span>{{ item }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </ds-card>
+    </div>
+  </div>
+</section>

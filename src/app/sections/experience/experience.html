@@ -1,0 +1,37 @@
+<section class="section section--alt" id="experience">
+  <div class="container">
+    <header class="experience__head">
+      <span class="section__eyebrow">{{ i18n.t().experience.eyebrow }}</span>
+      <h2 class="section__title">{{ i18n.t().experience.title }}</h2>
+      <p class="section__lead">{{ i18n.t().experience.lead }}</p>
+    </header>
+
+    <ol class="timeline">
+      @for (job of i18n.t().experience.items; track job.company + job.period) {
+        <li class="timeline__item" appReveal>
+          <div class="timeline__dot" aria-hidden="true"></div>
+          <div class="timeline__card">
+            <div class="timeline__top">
+              <h3 class="timeline__role">{{ job.role }}</h3>
+              <span class="timeline__period">{{ job.period }}</span>
+            </div>
+            <div class="timeline__company-row">
+              <span class="timeline__company">{{ job.company }}</span>
+              @if (job.client) {
+                <ds-badge
+                  [label]="i18n.t().experience.clientLabel + ': ' + job.client"
+                  tone="primary"
+                ></ds-badge>
+              }
+            </div>
+            <ul class="timeline__bullets">
+              @for (bullet of job.bullets; track bullet) {
+                <li>{{ bullet }}</li>
+              }
+            </ul>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
