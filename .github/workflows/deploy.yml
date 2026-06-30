@@ -30,7 +30,11 @@ jobs:
           scope: '@hirano28'
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        # Drop the local file-linked lockfile (used for offline dev via `npm run ds:link`)
+        # so the Design System is resolved from GitHub Packages on CI.
+        run: |
+          rm -f package-lock.json
+          npm install --no-audit --no-fund
         env:
           # GITHUB_TOKEN can read packages published under the same account.
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
